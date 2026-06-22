@@ -3,11 +3,13 @@ Docker Compose setup for OpenELIS-Global2
 
 You can find more information on how to set up OpenELIS at our [docs page](http://docs.openelis-global.org/)
 
-[![Build Status](https://github.com/I-TECH-UW/OpenELIS-Global-2/actions/workflows/ci.yml/badge.svg)](https://github.com/I-TECH-UW/OpenELIS-Global-2/actions/workflows/ci.yml)
+[![Backend Build](https://github.com/DIGI-UW/OpenELIS-Global-2/actions/workflows/backend.yml/badge.svg)](https://github.com/DIGI-UW/OpenELIS-Global-2/actions/workflows/backend.yml)
 
-[![Publish Docker Image Status](https://github.com/I-TECH-UW/OpenELIS-Global-2/actions/workflows/publish-and-test.yml/badge.svg)](https://github.com/I-TECH-UW/OpenELIS-Global-2/actions/workflows/publish-and-test.yml)
+[![Frontend Build](https://github.com/DIGI-UW/OpenELIS-Global-2/actions/workflows/frontend.yml/badge.svg)](https://github.com/DIGI-UW/OpenELIS-Global-2/actions/workflows/frontend.yml)
 
-[![Build Off Line Docker Images](https://github.com/I-TECH-UW/openelis-docker/actions/workflows/build-installer.yml/badge.svg)](https://github.com/I-TECH-UW/openelis-docker/actions/workflows/build-installer.yml)
+[![Publish Docker Images](https://github.com/DIGI-UW/OpenELIS-Global-2/actions/workflows/publish-images.yml/badge.svg)](https://github.com/DIGI-UW/OpenELIS-Global-2/actions/workflows/publish-images.yml)
+
+[![Build Off Line Docker Images](https://github.com/DIGI-UW/openelis-docker/actions/workflows/build-installer.yml/badge.svg)](https://github.com/DIGI-UW/openelis-docker/actions/workflows/build-installer.yml)
 
 ## ONLINE INSTALLATION
 

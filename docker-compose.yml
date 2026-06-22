@@ -161,10 +161,17 @@ services:
         ports:
             - 80:80
             - 443:443
+        environment:
+            - OE_NGINX_CERT=${OE_NGINX_CERT:-apache-selfsigned.crt}
+            - OE_NGINX_KEY=${OE_NGINX_KEY:-apache-selfsigned.key}
+        command:
+            - /bin/sh
+            - -c
+            - "envsubst '$$OE_NGINX_CERT $$OE_NGINX_KEY' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"
         volumes:
-            - certs-vol:/etc/nginx/certs/
-            - keys-vol:/etc/nginx/keys/
-            - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ${OE_CERTS_PATH:-certs-vol}:/etc/nginx/certs/
+            - ${OE_KEYS_PATH:-keys-vol}:/etc/nginx/keys/
+            - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf.template:ro
             # - /KEYSTORE_PASSWORD:/etc/nginx/private/key_pass
             # - /etc/openelis-global/nginx.cert.pem:/etc/nginx/certs/cert.crt
             # - /etc/openelis-global/nginx.key.pem:/etc/nginx/certs/cert.key
