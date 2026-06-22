@@ -58,13 +58,22 @@ jobs:
             APP_DIR="${DEPLOY_PATH:-/home/ubuntu/openelis-docker}"
             REPO_URL="https://github.com/DIGI-UW/openelis-docker.git"
 
-            # --- fetch the latest deployment definition -----------------------
+            # --- get the deployment definition --------------------------------
+            # Clone on first deploy; afterwards just fast-forward to the latest.
             if [ ! -d "$APP_DIR/.git" ]; then
               git clone "$REPO_URL" "$APP_DIR"
             fi
             cd "$APP_DIR"
+
+            # Pull the latest deployment definition WITHOUT a hard reset. A
+            # fast-forward only updates files that changed upstream, so it leaves
+            # the containers' root-owned log files in configs/logs untouched
+            # (a hard reset would try to overwrite them and fail: Permission
+            # denied -> exit 128). Drop our prior .env edits first so the merge
+            # never conflicts on .env; the cert overrides are re-applied below.
             git fetch origin main
-            git reset --hard origin/main
+            git checkout -- .env 2>/dev/null || true
+            git merge --ff-only origin/main
 
             # --- apply the testing-server env overrides -----------------------
             # set_env KEY VALUE : replace the line if the key exists, else append it
